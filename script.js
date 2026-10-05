@@ -45,51 +45,110 @@ const dataIPK = [
 ];
 
 
-function hitungRataRata(data) {
-    let total = 0;
+const tabelNilai = document.getElementById("tabelNilai");
+const tabelIPK = document.getElementById("tabelIPK");
 
-    for (const item of data) {
-        total += item.ipk;
-    }
 
-    return total / data.length;
+function tampilkanNilai(data) {
+    tabelNilai.innerHTML = "";
+
+    data.forEach(function(item, index) {
+
+        const baris = document.createElement("tr");
+
+        baris.innerHTML = `
+            <td>${index + 1}</td>
+            <td class="text-start">${item.nama}</td>
+            <td class="nilai">${item.nilai}</td>
+        `;
+
+        tabelNilai.appendChild(baris);
+    });
 }
 
 
-function cariNilaiBagus(data) {
-    for (const item of data) {
-        if (item.nilai === "A" || item.nilai === "A-") {
-            console.log(item.nama + " - Nilai: " + item.nilai);
-        }
-    }
+function tampilkanIPK() {
+    tabelIPK.innerHTML = "";
+
+    dataIPK.forEach(function(item) {
+
+        const baris = document.createElement("tr");
+
+        baris.innerHTML = `
+            <td>Semester ${item.semester}</td>
+            <td class="nilai">${item.ipk}</td>
+        `;
+
+        tabelIPK.appendChild(baris);
+    });
 }
 
 
-console.log("=== DATA NILAI ===");
-
-for (const item of mataKuliah) {
-    console.log(item.nama + " - " + item.nilai);
-}
+tampilkanNilai(mataKuliah);
+tampilkanIPK();
 
 
-console.log("=== RATA-RATA IPK ===");
+// Pencarian mata kuliah
+const cari = document.getElementById("cari");
 
-const rataRata = hitungRataRata(dataIPK);
+cari.addEventListener("input", function() {
 
-console.log(rataRata.toFixed(2));
+    const kataKunci = cari.value.toLowerCase();
+
+    const hasil = mataKuliah.filter(function(item) {
+        return item.nama.toLowerCase().includes(kataKunci);
+    });
+
+    tampilkanNilai(hasil);
+});
 
 
-console.log("=== NILAI A DAN A- ===");
+// Tombol tampil/sembunyikan IPK
+const tombolIPK = document.getElementById("tombolIPK");
+const dataIPKElement = document.getElementById("dataIPK");
 
-cariNilaiBagus(mataKuliah);
+tombolIPK.addEventListener("click", function() {
 
+    dataIPKElement.classList.toggle("sembunyi");
 
-console.log("=== STATUS IPK ===");
-
-for (const item of dataIPK) {
-    if (item.ipk >= 3.50) {
-        console.log("Semester " + item.semester + ": IPK Baik");
+    if (dataIPKElement.classList.contains("sembunyi")) {
+        tombolIPK.textContent = "Tampilkan IPK";
     } else {
-        console.log("Semester " + item.semester + ": Perlu ditingkatkan");
+        tombolIPK.textContent = "Sembunyikan IPK";
     }
-}
+
+});
+
+
+// Form tambah mata kuliah
+const formNilai = document.getElementById("formNilai");
+const namaMataKuliah = document.getElementById("namaMataKuliah");
+const nilaiMataKuliah = document.getElementById("nilaiMataKuliah");
+const pesanError = document.getElementById("pesanError");
+
+formNilai.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const nama = namaMataKuliah.value.trim();
+    const nilai = nilaiMataKuliah.value;
+
+    if (nama === "" || nilai === "") {
+
+        pesanError.classList.remove("error");
+        pesanError.textContent = "Nama mata kuliah dan nilai harus diisi.";
+
+        return;
+    }
+
+    mataKuliah.push({
+        nama: nama,
+        nilai: nilai
+    });
+
+    pesanError.classList.add("error");
+
+    tampilkanNilai(mataKuliah);
+
+    formNilai.reset();
+});
