@@ -1,3 +1,4 @@
+// Data mata kuliah dalam bentuk array of object
 const mataKuliah = [
     {
         nama: "Pengembangan Sistem Berbasis Web",
@@ -29,6 +30,7 @@ const mataKuliah = [
     }
 ];
 
+// Data IPK
 const dataIPK = [
     {
         semester: 1,
@@ -44,58 +46,55 @@ const dataIPK = [
     }
 ];
 
-
-const tabelNilai = document.getElementById("tabelNilai");
-const tabelIPK = document.getElementById("tabelIPK");
-
-
+// Menampilkan data nilai menggunakan DOM
 function tampilkanNilai(data) {
+    const tabelNilai = document.getElementById("tabelNilai");
+
     tabelNilai.innerHTML = "";
 
-    data.forEach(function(item, index) {
-
+    data.forEach(function (item, index) {
         const baris = document.createElement("tr");
 
         baris.innerHTML = `
             <td>${index + 1}</td>
-            <td class="text-start">${item.nama}</td>
-            <td class="nilai">${item.nilai}</td>
+            <td>${item.nama}</td>
+            <td>${item.nilai}</td>
         `;
 
         tabelNilai.appendChild(baris);
     });
 }
 
-
+// Menampilkan data IPK menggunakan DOM
 function tampilkanIPK() {
+    const tabelIPK = document.getElementById("tabelIPK");
+
     tabelIPK.innerHTML = "";
 
-    dataIPK.forEach(function(item) {
-
+    dataIPK.forEach(function (item) {
         const baris = document.createElement("tr");
 
         baris.innerHTML = `
             <td>Semester ${item.semester}</td>
-            <td class="nilai">${item.ipk}</td>
+            <td>${item.ipk}</td>
         `;
 
         tabelIPK.appendChild(baris);
     });
 }
 
-
+// Menampilkan data saat halaman dibuka
 tampilkanNilai(mataKuliah);
 tampilkanIPK();
 
 
-// Pencarian mata kuliah
+// INTERAKSI 1: Pencarian mata kuliah
 const cari = document.getElementById("cari");
 
-cari.addEventListener("input", function() {
-
+cari.addEventListener("input", function () {
     const kataKunci = cari.value.toLowerCase();
 
-    const hasil = mataKuliah.filter(function(item) {
+    const hasil = mataKuliah.filter(function (item) {
         return item.nama.toLowerCase().includes(kataKunci);
     });
 
@@ -103,52 +102,55 @@ cari.addEventListener("input", function() {
 });
 
 
-// Tombol tampil/sembunyikan IPK
-const tombolIPK = document.getElementById("tombolIPK");
-const dataIPKElement = document.getElementById("dataIPK");
-
-tombolIPK.addEventListener("click", function() {
-
-    dataIPKElement.classList.toggle("sembunyi");
-
-    if (dataIPKElement.classList.contains("sembunyi")) {
-        tombolIPK.textContent = "Tampilkan IPK";
-    } else {
-        tombolIPK.textContent = "Sembunyikan IPK";
-    }
-
-});
-
-
-// Form tambah mata kuliah
+// INTERAKSI 2: Tambah data dan validasi form
 const formNilai = document.getElementById("formNilai");
 const namaMataKuliah = document.getElementById("namaMataKuliah");
 const nilaiMataKuliah = document.getElementById("nilaiMataKuliah");
 const pesanError = document.getElementById("pesanError");
 
-formNilai.addEventListener("submit", function(event) {
-
+formNilai.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const nama = namaMataKuliah.value.trim();
     const nilai = nilaiMataKuliah.value;
 
+    // Validasi input
     if (nama === "" || nilai === "") {
-
-        pesanError.classList.remove("error");
+        pesanError.classList.add("error");
         pesanError.textContent = "Nama mata kuliah dan nilai harus diisi.";
-
         return;
     }
 
+    // Menambahkan data baru ke array
     mataKuliah.push({
         nama: nama,
         nilai: nilai
     });
 
-    pesanError.classList.add("error");
+    pesanError.classList.remove("error");
+    pesanError.textContent = "Data berhasil ditambahkan.";
 
     tampilkanNilai(mataKuliah);
 
     formNilai.reset();
+});
+
+
+// INTERAKSI 3 + FITUR JQUERY:
+// Tombol untuk menampilkan dan menyembunyikan data IPK
+$(function () {
+
+    $("#dataIPK").hide();
+
+    $("#tombolIPK").on("click", function () {
+
+        $("#dataIPK").slideToggle(300);
+
+        if ($(this).text() === "Tampilkan IPK") {
+            $(this).text("Sembunyikan IPK");
+        } else {
+            $(this).text("Tampilkan IPK");
+        }
+    });
+
 });

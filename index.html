@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Profil Muhammad Muzaki Aprian</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,225 +15,123 @@
         .hero {
             background: linear-gradient(135deg, #212529, #495057);
             color: white;
-            padding: 80px 20px;
+            padding: 50px 20px;
+            border-radius: 0 0 25px 25px;
         }
 
         .profile-card {
             margin-top: -50px;
-            position: relative;
         }
 
-        .profile-photo {
+        .profile-img {
             width: 150px;
             height: 150px;
             object-fit: cover;
             border-radius: 50%;
             border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .card {
-            border: none;
-            border-radius: 15px;
-        }
-
-        .nilai {
-            font-weight: bold;
-        }
-
-        .section-title {
-            font-weight: 700;
-        }
-
-        .error {
-            color: red;
-            display: none;
         }
 
         .sembunyi {
             display: none;
+        }
+
+        .error {
+            color: red;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-
-            <a class="navbar-brand fw-bold" href="#home">
-                MY PROFILE
-            </a>
-
-            <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#profil">Profil</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nilai">Nilai</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ipk">IPK</a>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-
-
-    <!-- Hero -->
-    <section class="hero text-center" id="home">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Profil Data Diri</h1>
-            <p class="lead">Mahasiswa Sistem dan Teknologi Informasi</p>
-        </div>
+    <!-- Header -->
+    <section class="hero text-center">
+        <h1>Profil Mahasiswa</h1>
+        <p>Website Profil Muhammad Muzaki Aprian</p>
     </section>
-
 
     <!-- Profil -->
-    <section class="container profile-card" id="profil">
+    <div class="container">
+        <div class="card shadow profile-card">
+            <div class="card-body text-center">
 
-        <div class="card shadow">
-            <div class="card-body p-5 text-center">
+                <img src="1482500050.jpg" alt="Foto Profil" class="profile-img mb-3">
 
-                <img src="1482500050.jpg"
-                    alt="Foto Muhammad Muzaki Aprian"
-                    class="profile-photo mb-3">
-
-                <h2 class="fw-bold">
-                    Muhammad Muzaki Aprian
-                </h2>
-
-                <p class="text-muted">
-                    Mahasiswa Sistem dan Teknologi Informasi
-                </p>
-
-                <div class="row text-start">
-
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 bg-light rounded">
-                            <b>NBI</b><br>
-                            1482500050
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 bg-light rounded">
-                            <b>Nama Lengkap</b><br>
-                            Muhammad Muzaki Aprian
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 bg-light rounded">
-                            <b>Program Studi</b><br>
-                            Sistem dan Teknologi Informasi
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 bg-light rounded">
-                            <b>Universitas</b><br>
-                            Universitas 17 Agustus 1945 Surabaya
-                        </div>
-                    </div>
-
-                </div>
+                <h2>Muhammad Muzaki Aprian</h2>
+                <p class="text-muted">Mahasiswa Sistem dan Teknologi Informasi</p>
 
             </div>
         </div>
+    </div>
 
-    </section>
+    <!-- Data Nilai -->
+    <div class="container mt-5">
 
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>Daftar Nilai</h3>
 
-    <!-- Nilai -->
-    <section class="container mt-5" id="nilai">
-
-        <div class="card shadow">
-            <div class="card-body p-5">
-
-                <h2 class="section-title text-center">
-                    Nilai Mata Kuliah
-                </h2>
-
-                <!-- Pencarian -->
-                <div class="mb-4">
-                    <label class="form-label">Cari Mata Kuliah</label>
-                    <input type="text" id="cari" class="form-control"
-                        placeholder="Ketik nama mata kuliah...">
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover text-center">
-
-                        <thead class="table-dark">
-                            <tr>
-                                <th>No</th>
-                                <th>Mata Kuliah</th>
-                                <th>Nilai</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="tabelNilai"></tbody>
-
-                    </table>
-                </div>
-
-            </div>
+            <input
+                type="text"
+                id="cari"
+                class="form-control w-50"
+                placeholder="Cari mata kuliah..."
+            >
         </div>
 
-    </section>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Mata Kuliah</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
 
+                <tbody id="tabelNilai"></tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Form Tambah Nilai -->
-    <section class="container mt-5">
+    <div class="container mt-5">
 
         <div class="card shadow">
-            <div class="card-body p-5">
+            <div class="card-body">
 
-                <h2 class="section-title text-center">
-                    Tambah Mata Kuliah
-                </h2>
+                <h3 class="mb-4">Tambah Mata Kuliah</h3>
 
                 <form id="formNilai">
 
                     <div class="mb-3">
-                        <label class="form-label">Nama Mata Kuliah</label>
-                        <input type="text" id="namaMataKuliah"
+                        <label for="namaMataKuliah" class="form-label">
+                            Nama Mata Kuliah
+                        </label>
+
+                        <input
+                            type="text"
+                            id="namaMataKuliah"
                             class="form-control"
-                            placeholder="Masukkan nama mata kuliah">
+                            placeholder="Masukkan nama mata kuliah"
+                        >
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Nilai</label>
+                        <label for="nilaiMataKuliah" class="form-label">
+                            Nilai
+                        </label>
+
                         <select id="nilaiMataKuliah" class="form-select">
                             <option value="">Pilih nilai</option>
                             <option value="A">A</option>
                             <option value="A-">A-</option>
                             <option value="B+">B+</option>
                             <option value="B">B</option>
+                            <option value="B-">B-</option>
+                            <option value="C">C</option>
                         </select>
                     </div>
 
-                    <p id="pesanError" class="error">
-                        Nama mata kuliah dan nilai harus diisi.
-                    </p>
+                    <p id="pesanError"></p>
 
                     <button type="submit" class="btn btn-dark">
                         Tambah Data
@@ -245,71 +141,49 @@
 
             </div>
         </div>
+    </div>
 
-    </section>
+    <!-- Data IPK -->
+    <div class="container mt-5 mb-5">
 
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>Data IPK</h3>
 
-    <!-- IPK -->
-    <section class="container mt-5" id="ipk">
+            <button id="tombolIPK" class="btn btn-primary">
+                Tampilkan IPK
+            </button>
+        </div>
 
-        <div class="card shadow">
-            <div class="card-body p-5">
+        <div id="dataIPK">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Semester</th>
+                            <th>IPK</th>
+                        </tr>
+                    </thead>
 
-                <h2 class="section-title text-center">
-                    Indeks Prestasi Kumulatif
-                </h2>
-
-                <div class="text-center mb-4">
-                    <button id="tombolIPK" class="btn btn-dark">
-                        Sembunyikan IPK
-                    </button>
-                </div>
-
-                <div id="dataIPK">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered text-center">
-
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Semester</th>
-                                    <th>IPK</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="tabelIPK"></tbody>
-
-                        </table>
-                    </div>
-
-                </div>
-
+                    <tbody id="tabelIPK"></tbody>
+                </table>
             </div>
         </div>
 
-    </section>
-
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-
-        <h5>Muhammad Muzaki Aprian</h5>
-
-        <p class="mb-1">
-            Sistem dan Teknologi Informasi
-        </p>
-
-        <small>
-            © 2026 Profil Data Diri
-        </small>
-
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">Muhammad Muzaki Aprian</p>
     </footer>
 
-
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
-
 </html>
